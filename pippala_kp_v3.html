@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photoshoot Production for PIPPALA — Anna Varsegova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── BRAND TOKENS (Mood in Shot) ─────────────────── */
+:root {
+  --purple:   #9548b7;
+  --purple-d: #7c0994;
+  --lime:     #aeff00;
+  --black:    #101010;
+  --dark:     #000000;
+  --white:    #ffffff;
+  --grey:     #b1b1b1;
+  --dim:      #1c1c1c;
+
+  --display:  'Bebas Neue', 'Arial Black', sans-serif;
+  --serif:    'Cormorant Garamond', Georgia, serif;
+  --sans:     'DM Sans', Arial, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--black);
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NAVBAR ──────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--purple);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+}
+
+.nav__logo {
+  font-family: var(--display);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav__logo img {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.nav__links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav__links a {
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--lime);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.nav__links a:hover { opacity: 0.65; }
+
+.nav__cta {
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--lime);
+  text-decoration: none;
+  border: 1px solid var(--lime);
+  padding: 7px 18px;
+  transition: all 0.2s;
+}
+
+.nav__cta:hover { background: var(--lime); color: var(--black); }
+
+/* ─── HERO ────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  padding-top: 70px;
+  background: var(--purple);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  overflow: hidden;
+}
+
+.hero__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px 60px 72px 72px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero__kicker {
+  font-family: var(--display);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--lime);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero__kicker::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--lime);
+}
+
+.hero__title {
+  font-family: var(--display);
+  font-size: clamp(58px, 7.5vw, 108px);
+  line-height: 0.91;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.hero__client {
+  font-family: var(--display);
+  font-size: clamp(58px, 7.5vw, 108px);
+  line-height: 0.91;
+  letter-spacing: 0.06em;
+  color: var(--lime);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero__client svg {
+  width: 0.5em;
+  height: 0.5em;
+  flex-shrink: 0;
+}
+
+.hero__desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  max-width: 380px;
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+
+.hero__meta {
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.35);
+  border-top: 1px solid rgba(255,255,255,0.14);
+  padding-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero__meta::before { content: '✳'; color: var(--lime); }
+
+.hero__right {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  background: url('kp_photos/p2_shooting_format.jpg') center/cover no-repeat;
+  filter: brightness(0.55) saturate(0.75);
+}
+
+.hero__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(270deg, transparent 40%, var(--purple) 90%);
+}
+
+.hero__num {
+  position: absolute;
+  bottom: 32px;
+  right: 28px;
+  font-family: var(--display);
+  font-size: 100px;
+  line-height: 1;
+  color: rgba(174,255,0,0.07);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+
+/* ─── SECTION ─────────────────────────────────────── */
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  overflow: hidden;
+}
+
+.section--flip { direction: rtl; }
+.section--flip > * { direction: ltr; }
+
+.section__img {
+  position: relative;
+  overflow: hidden;
+}
+
+.section__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.78) saturate(0.9);
+  transition: transform 0.7s ease;
+}
+
+.section:hover .section__img img { transform: scale(1.04); }
+
+.section__img-label {
+  position: absolute;
+  bottom: 28px;
+  left: 28px;
+  font-family: var(--display);
+  font-size: clamp(32px, 3.5vw, 50px);
+  line-height: 1.0;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+}
+
+.section__img-num {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: var(--lime);
+  background: rgba(0,0,0,0.5);
+  padding: 5px 10px;
+}
+
+.section__body {
+  background: var(--black);
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+}
+
+.section__body--dim    { background: var(--dim); }
+.section__body--purple { background: var(--purple); }
+.section__body--dark   { background: var(--dark); }
+
+/* ─── TYPOGRAPHY ──────────────────────────────────── */
+.kicker {
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--lime);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.kicker::before {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--lime);
+}
+
+.title {
+  font-family: var(--display);
+  font-size: clamp(38px, 4.2vw, 62px);
+  letter-spacing: 0.04em;
+  line-height: 1.0;
+  color: var(--white);
+}
+
+.body-text {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.7;
+  max-width: 400px;
+}
+
+.divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+
+.divider--lime { background: rgba(174,255,0,0.35); }
+
+/* ─── LIST ────────────────────────────────────────── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list__item {
+  font-size: 14px;
+  color: rgba(255,255,255,0.72);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  line-height: 1.5;
+}
+
+.list__item::before {
+  content: '—';
+  color: var(--lime);
+  flex-shrink: 0;
+}
+
+/* ─── CHAPTERS ────────────────────────────────────── */
+.chapters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255,255,255,0.07);
+}
+
+.chapter {
+  background: var(--black);
+  padding: 26px 22px;
+  transition: background 0.2s;
+}
+.chapter:hover { background: #1a1a1a; }
+
+.chapter__num {
+  font-family: var(--display);
+  font-size: 44px;
+  color: var(--lime);
+  opacity: 0.16;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.chapter__name {
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.chapter__product {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+  text-transform: uppercase;
+}
+
+/* ─── FULL BANNER ─────────────────────────────────── */
+.banner {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.banner__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: brightness(0.4) saturate(0.7);
+}
+
+.banner__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 80px;
+  background: linear-gradient(90deg, rgba(16,16,16,0.9) 40%, transparent);
+}
+
+.banner__kicker {
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--lime);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.banner__kicker::before { content:''; width:24px; height:1px; background:var(--lime); display:block; }
+
+.banner__title {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 92px);
+  line-height: 0.9;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  max-width: 680px;
+}
+
+.banner__sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 18px;
+  max-width: 380px;
+  line-height: 1.65;
+}
+
+/* ─── TWO-COL ─────────────────────────────────────── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.col-block {
+  padding: 56px 52px;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  background: var(--black);
+}
+.col-block:last-child { border-right: none; }
+.col-block--dim { background: var(--dim); }
+
+.col-title {
+  font-family: var(--display);
+  font-size: clamp(22px, 2vw, 32px);
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin-bottom: 26px;
+  line-height: 1.1;
+}
+
+/* ─── PALETTE ─────────────────────────────────────── */
+.palette {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch__dot {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.swatch__name {
+  font-family: var(--display);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--grey);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ─── MOODBOARD ───────────────────────────────────── */
+.moodboard {
+  background: var(--dark);
+  padding: 72px 64px;
+}
+
+.moodboard__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.moodboard__title {
+  font-family: var(--display);
+  font-size: clamp(52px, 7vw, 96px);
+  line-height: 0.88;
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
+
+.moodboard__title em { color: var(--lime); font-style: normal; }
+
+.moodboard__sub {
+  font-size: 13px;
+  color: var(--grey);
+  max-width: 190px;
+  text-align: right;
+  line-height: 1.5;
+}
+
+/* Moodboard: two full slides stacked */
+.moodboard__slides {
+  display: grid;
+  gap: 6px;
+}
+
+.moodboard__slide {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.moodboard__slide img {
+  width: 100%;
+  display: block;
+  filter: brightness(0.85) saturate(0.9);
+  transition: transform 0.6s ease, filter 0.35s;
+}
+
+.moodboard__slide:hover img {
+  transform: scale(1.025);
+  filter: brightness(0.95) saturate(1.05);
+}
+
+/* ─── DELIVERABLES ────────────────────────────────── */
+.deliv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.deliv-card {
+  background: var(--dim);
+  padding: 30px 28px;
+  transition: background 0.2s;
+}
+.deliv-card:hover { background: #222; }
+
+.deliv-card__icon {
+  font-size: 20px;
+  color: var(--lime);
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.deliv-card__title {
+  font-family: var(--display);
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.deliv-card__body {
+  font-size: 13px;
+  color: var(--grey);
+  line-height: 1.6;
+}
+
+/* ─── CTA ─────────────────────────────────────────── */
+.cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 68vh;
+  overflow: hidden;
+}
+
+.cta__content {
+  background: var(--purple);
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 26px;
+}
+
+.cta__title {
+  font-family: var(--display);
+  font-size: clamp(52px, 7vw, 96px);
+  line-height: 0.9;
+  letter-spacing: 0.03em;
+  color: var(--white);
+}
+
+.cta__body {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.65;
+  max-width: 360px;
+}
+
+.cta__photo {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+}
+
+.cta__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  filter: brightness(0.65) saturate(0.8);
+}
+
+.cta__credit {
+  background: var(--dark);
+  padding: 20px 32px;
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cta__credit em { color: var(--lime); font-style: normal; }
+
+/* ─── FOOTER ──────────────────────────────────────── */
+.footer {
+  background: var(--dark);
+  padding: 24px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer__left {
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.22);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer__left::before { content: '✳'; color: var(--lime); opacity: 0.5; }
+
+.footer__right {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.08);
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 960px) {
+  .hero, .section, .cta { grid-template-columns: 1fr; }
+  .hero__right { height: 52vw; }
+  .hero__left { padding: 52px 28px; }
+  .section--flip { direction: ltr; }
+  .section__body { padding: 48px 28px; }
+  .section__img { height: 52vw; }
+  .two-col { grid-template-columns: 1fr; }
+  .col-block { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 40px 28px; }
+  .moodboard { padding: 48px 20px; }
+  .banner__overlay { padding: 0 28px; }
+  .cta__content { padding: 52px 28px; }
+  .deliv-grid { grid-template-columns: 1fr; }
+  .chapters { grid-template-columns: 1fr; }
+  .nav { padding: 0 24px; }
+  .nav__links { display: none; }
+  .footer { padding: 20px 28px; flex-direction: column; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ NAV ═════ -->
+<nav class="nav">
+  <a class="nav__logo" href="#">
+    <img src="Mood in shot_files/Frame_133.png" alt="Mood in Shot">
+  </a>
+  <ul class="nav__links">
+    <li><a href="#concept">Concept</a></li>
+    <li><a href="#structure">Structure</a></li>
+    <li><a href="#style">Style</a></li>
+    <li><a href="#moodboard">Inspiration</a></li>
+    <li><a href="#deliverables">Deliverables</a></li>
+  </ul>
+  <a class="nav__cta" href="#nextstep">START PROJECT</a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════ HERO ════ -->
+<section class="hero">
+  <div class="hero__left">
+    <div class="hero__kicker">Anna Varsegova — Visual Direction</div>
+    <h1 class="hero__title">PHOTOSHOOT<br>PRODUCTION<br>FOR</h1>
+    <div class="hero__client">
+      <svg viewBox="0 0 44 44" fill="none">
+        <path d="M22 5C14 5 7 13 7 24C7 31 12 38 22 40C22 40 22 22 36 15C32 8 27 5 22 5Z" fill="#aeff00" opacity="0.9"/>
+        <path d="M22 40C22 40 22 22 7 24" stroke="#7acd00" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      IPPALA
+    </div>
+    <p class="hero__desc">A photoshoot production crafted around ritual, sensory experience, and quiet luxury — told through natural light and movement.</p>
+    <div class="hero__meta">Anna Varsegova Photographer / Visual Direction</div>
+  </div>
+  <div class="hero__right">
+    <div class="hero__photo"></div>
+    <div class="hero__num">КП</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ 01 — SHOOTING FORMAT ═ -->
+<section class="section" id="concept">
+  <div class="section__img">
+    <img src="kp_photos/p2_shooting_format.jpg" alt="Shooting Format">
+    <div class="section__img-label">SHOOTING<br>FORMAT</div>
+    <div class="section__img-num">01 / 07</div>
+  </div>
+  <div class="section__body">
+    <div class="kicker">01 — Concept</div>
+    <h2 class="title">A STORY TOLD THROUGH MOVEMENT, TEXTURE<br><span style="color:var(--lime);">&</span> ATMOSPHERE</h2>
+    <p class="body-text">The shoot takes place in a natural environment — forest or park — using natural light. This is not a traditional beauty shoot, but a visual narrative.</p>
+    <div class="divider"></div>
+    <div class="list">
+      <div class="list__item">Ritual</div>
+      <div class="list__item">Sensory experience</div>
+      <div class="list__item">Connection to nature</div>
+      <div class="list__item">Quiet luxury</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ 02 — SHOOT STRUCTURE ═ -->
+<section class="section section--flip" id="structure">
+  <div class="section__img">
+    <img src="kp_photos/p3_shoot_structure.jpg" alt="Shoot Structure">
+    <div class="section__img-label">SHOOT<br>STRUCTURE</div>
+    <div class="section__img-num">02 / 07</div>
+  </div>
+  <div class="section__body section__body--dim">
+    <div class="kicker">02 — Structure</div>
+    <h2 class="title">4 <span style="color:var(--lime);">VISUAL</span><br>CHAPTERS</h2>
+    <p class="body-text">The visual story is divided into four product chapters, each carrying its own mood and energy.</p>
+    <div class="chapters">
+      <div class="chapter">
+        <div class="chapter__num">01</div>
+        <div class="chapter__name">Activation</div>
+        <div class="chapter__product">Vitality Essence</div>
+      </div>
+      <div class="chapter">
+        <div class="chapter__num">02</div>
+        <div class="chapter__name">Nourishment</div>
+        <div class="chapter__product">Vitality Cream</div>
+      </div>
+      <div class="chapter">
+        <div class="chapter__num">03</div>
+        <div class="chapter__name">Protection</div>
+        <div class="chapter__product">Defense Cream</div>
+      </div>
+      <div class="chapter">
+        <div class="chapter__num">04</div>
+        <div class="chapter__name">Precision</div>
+        <div class="chapter__product">Blemish Corrector</div>
+      </div>
+    </div>
+    <div class="divider divider--lime"></div>
+    <div class="list">
+      <div class="list__item">Guasha integration across all stages</div>
+      <div class="list__item">Product compositions</div>
+      <div class="list__item">Macro and texture shots</div>
+      <div class="list__item">Lifestyle atmospheric scenes</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ 03 — WHAT WILL BE CAPTURED ═ -->
+<div class="banner">
+  <img class="banner__img" src="kp_photos/p4_captured.jpg" alt="What will be captured">
+  <div class="banner__overlay">
+    <div class="banner__kicker">03 — Shot List</div>
+    <h2 class="banner__title">WHAT WILL BE CAPTURED</h2>
+    <p class="banner__sub">Each product receives a complete visual treatment — from hero shots to intimate lifestyle moments.</p>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="col-block">
+    <div class="col-title">FOR EACH<br>PRODUCT</div>
+    <div class="list">
+      <div class="list__item">Hero shots — sculptural, brand-focused</div>
+      <div class="list__item">In-use shots — on skin, within ritual</div>
+      <div class="list__item">Macro textures — skin + product</div>
+      <div class="list__item">Lifestyle imagery — environment, movement</div>
+    </div>
+  </div>
+  <div class="col-block col-block--dim">
+    <div class="col-title">ADDITIONAL<br>FOCUS</div>
+    <div class="list">
+      <div class="list__item">Hands as a key visual element</div>
+      <div class="list__item">The layering process</div>
+      <div class="list__item">Interaction between product and guasha</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ 04 — VISUAL STYLE ════ -->
+<section class="section" id="style">
+  <div class="section__img">
+    <img src="kp_photos/p6_styling.jpg" alt="Visual Style" style="object-position: center 50%;">
+    <div class="section__img-label">VISUAL<br>STYLE</div>
+    <div class="section__img-num">04 / 07</div>
+  </div>
+  <div class="section__body section__body--dark">
+    <div class="kicker">04 — Aesthetics</div>
+    <h2 class="title">NATURAL LIGHT.<br><span style="color:var(--lime);">REAL</span> TEXTURE.</h2>
+    <div class="list">
+      <div class="list__item">Natural light — side lighting for texture depth</div>
+      <div class="list__item">Real skin texture, no plastic retouching</div>
+      <div class="list__item">Minimal compositions</div>
+      <div class="list__item">30–50% negative space</div>
+    </div>
+    <div class="divider divider--lime"></div>
+    <p style="font-family:var(--display); font-size:10px; letter-spacing:0.22em; color:var(--lime); margin-bottom:14px;">COLOR PALETTE</p>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch__dot" style="background:#d4c8b5;"></div>
+        <div class="swatch__name">STONE</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__dot" style="background:#576b35;"></div>
+        <div class="swatch__name">MUTED<br>GREEN</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__dot" style="background:#3d1f0a;"></div>
+        <div class="swatch__name">WOOD</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__dot" style="background:#8a9b6e;"></div>
+        <div class="swatch__name">SAGE</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__dot" style="background:#e0c9a8;"></div>
+        <div class="swatch__name">BEIGE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ 05 — STYLING & LOCATION ════ -->
+<section class="section section--flip">
+  <div class="section__img">
+    <img src="kp_photos/p3_shoot_structure.jpg" alt="Styling and Location" style="object-position: 80% center;">
+    <div class="section__img-label">STYLING &<br>LOCATION</div>
+    <div class="section__img-num">05 / 07</div>
+  </div>
+  <div class="section__body section__body--purple">
+    <div class="kicker">05 — Production</div>
+    <h2 class="title">OUTDOOR.<br>FOREST<br>OR PARK.</h2>
+    <div class="divider" style="background:rgba(255,255,255,0.18);"></div>
+    <div class="list">
+      <div class="list__item">Natural surfaces — stone, wood, linen, ceramic</div>
+      <div class="list__item">Minimal props, seasonal elements</div>
+      <div class="list__item">Soft diffused light &amp; natural textures</div>
+      <div class="list__item">Location selected for depth &amp; shadow</div>
+    </div>
+  </div>
+</section>
+
+<!-- Wardrobe + Model -->
+<div class="two-col">
+  <div class="col-block">
+    <div class="col-title">STYLING<br><span style="color:var(--lime);font-size:0.6em;letter-spacing:0.1em;">WARDROBE</span></div>
+    <p class="body-text" style="margin-bottom:20px;">Minimal and unobtrusive — supporting the visual narrative rather than drawing attention.</p>
+    <div class="list">
+      <div class="list__item">Simple silhouettes, natural fabrics</div>
+      <div class="list__item">Cotton and linen, lightweight flowing materials</div>
+      <div class="list__item">Colors: white, ivory, soft neutrals</div>
+    </div>
+    <div class="divider" style="margin:20px 0;"></div>
+    <p style="font-family:var(--serif);font-size:20px;color:rgba(255,255,255,0.38);font-style:italic;">Breathable. Effortless. Almost invisible within the frame.</p>
+  </div>
+  <div class="col-block col-block--dim">
+    <div class="col-title">MODEL<br><span style="color:var(--lime);font-size:0.6em;letter-spacing:0.1em;">REQUIREMENTS</span></div>
+    <div class="list" style="margin-bottom:20px;">
+      <div class="list__item">Experience in commercial shoots</div>
+      <div class="list__item">Micro-movements &amp; hand-focused shots</div>
+      <div class="list__item">Natural, clean skin</div>
+    </div>
+    <div style="background:rgba(174,255,0,0.06);border-left:2px solid var(--lime);padding:16px 18px;">
+      <p style="font-family:var(--display);font-size:10px;letter-spacing:0.2em;color:var(--lime);margin-bottom:8px;">CRITICAL REQUIREMENT</p>
+      <p style="font-size:13px;color:var(--grey);line-height:1.6;">Impeccable natural manicure — nude / transparent / neutral. Hands shot in close-up; imperfections significantly increase retouching cost.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════ INSPIRATION ════════ -->
+<section class="moodboard" id="moodboard">
+  <div class="moodboard__header">
+    <h2 class="moodboard__title">INSPI<em>R</em>ATION</h2>
+    <p class="moodboard__sub">Nature. Movement.<br>Texture. Atmosphere.</p>
+  </div>
+  <div class="moodboard__slides">
+    <div class="moodboard__slide">
+      <img src="kp_photos/p10_moodboard1.jpg" alt="Inspiration board 1">
+    </div>
+    <div class="moodboard__slide">
+      <img src="kp_photos/p11_moodboard2.jpg" alt="Inspiration board 2">
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ 06 DELIVERABLES ════ -->
+<section class="section section--flip" id="deliverables">
+  <div class="section__img">
+    <img src="kp_photos/p9_deliverables.jpg" alt="Deliverables">
+    <div class="section__img-label">DELIVER-<br>ABLES</div>
+    <div class="section__img-num">06 / 07</div>
+  </div>
+  <div class="section__body">
+    <div class="kicker">06 — Output</div>
+    <h2 class="title">WHAT YOU<br>RECEIVE</h2>
+    <div class="deliv-grid">
+      <div class="deliv-card">
+        <div class="deliv-card__icon">◫</div>
+        <div class="deliv-card__title">High-res Edited</div>
+        <div class="deliv-card__body">Full resolution retouched files for print &amp; digital.</div>
+      </div>
+      <div class="deliv-card">
+        <div class="deliv-card__icon">◫</div>
+        <div class="deliv-card__title">Web-optimised</div>
+        <div class="deliv-card__body">Compressed files for website and e-commerce.</div>
+      </div>
+      <div class="deliv-card">
+        <div class="deliv-card__icon">◫</div>
+        <div class="deliv-card__title">Multi-format</div>
+        <div class="deliv-card__body">Vertical 4:5 &amp; 9:16, horizontal banners.</div>
+      </div>
+      <div class="deliv-card">
+        <div class="deliv-card__icon">◫</div>
+        <div class="deliv-card__title">Multi-platform</div>
+        <div class="deliv-card__body">Social, website, campaigns &amp; educational.</div>
+      </div>
+    </div>
+    <div class="divider divider--lime"></div>
+    <div class="list">
+      <div class="list__item">1 shooting day</div>
+      <div class="list__item">Pre-planned shot list</div>
+      <div class="list__item">Optimised for multi-platform usage</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ 07 — NEXT STEP ════ -->
+<section class="cta" id="nextstep">
+  <div class="cta__content">
+    <div class="kicker">07 — What's next</div>
+    <h2 class="cta__title">NEXT<br>STEP</h2>
+    <div class="divider divider--lime"></div>
+    <p class="cta__body">A detailed budget breakdown will be prepared separately.</p>
+    <p class="cta__body">After alignment, we can finalise:</p>
+    <div class="list">
+      <div class="list__item">Timeline</div>
+      <div class="list__item">Team composition</div>
+      <div class="list__item">Production details</div>
+    </div>
+  </div>
+  <div class="cta__photo">
+    <img src="kp_photos/p12_nextstep.jpg" alt="Next Step">
+    <div class="cta__credit">
+      <em>✳</em> Anna Varsegova Photographer / Visual Direction
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ FOOTER ════ -->
+<footer class="footer">
+  <div class="footer__left">Anna Varsegova — КП for PIPPALA</div>
+  <div class="footer__right">PIPPALA</div>
+</footer>
+
+</body>
+</html>
